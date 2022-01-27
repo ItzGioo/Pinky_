@@ -3,8 +3,6 @@ const client = new Discord.Client(
     {intents: ["GUILDS", "GUILD_MEMBERS", "GUILD_MESSAGES"]}
 )
 
-client.login("OTM1MjE0MTMwNzI4Njc3NDA3.Ye7YCA.XWHwxAvgX_rltIxerPD1jWodFu4");
-
 client.on("ready", () => {
     console.log("Il bot è online")
 })
@@ -32,3 +30,5 @@ client.on("messageCreate", (message) => {
         message.channel.send("cavoli patate")
     }
 })
+
+client.login(process.env.token);
