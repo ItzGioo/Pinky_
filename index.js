@@ -1,9 +1,23 @@
-const Discord = require("discord.js")
+
+const Discord = require("discord.js");
 const client = new Discord.Client(
     {intents: ["GUILDS", "GUILD_MEMBERS", "GUILD_MESSAGES"]}
 )
+const fs = require('fs');
+const { description } = require("./commands/ben venuto");
 
-client.login(process.env.token)
+client.commands = new Discord.collection();
+
+const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
+
+for (const file of commandFiles) {
+    const command = require(`./commands/${file}`);
+    client.commands.set(comando.data.name, comando);
+}
+
+client.on('interactionCreate', (interaction) => {
+    console.log(interaction)
+})
 
 client.on("ready", () => {
     console.log("Il bot è online")
@@ -25,10 +39,19 @@ client.on("guildMemberAdd", (member) => {
     member.send({ embeds: [embed] });
     })
 
-client.on("messageCreate", (message) => {
+client.on('messageCreate', async (message) => {
 
-    if(message.content == "!pelo") {
-        
-        message.channel.send("cavoli patate")
+    if(!client.application?.owner) {
+        await client.application?.fetch();
+    }
+
+    if (message.content.toLowerCase() === '!registra' && message.author.id === client.application?.owner.id) {
+        const data = {
+            name: 'sera'
+        }
+        const comando = await client.guilds.ccache.gety(935811526806347776)?.commands.create(data);
+        console.log(comando);
     }
 })
+
+client.login(process.env.token)
