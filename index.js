@@ -1,23 +1,9 @@
-
-const Discord = require("discord.js");
+const Discord = require("discord.js")
 const client = new Discord.Client(
     {intents: ["GUILDS", "GUILD_MEMBERS", "GUILD_MESSAGES"]}
 )
-const fs = require('fs');
-const { description } = require("./commands/ben venuto");
 
-client.commands = new Discord.collection();
-
-const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
-
-for (const file of commandFiles) {
-    const command = require(`./commands/${file}`);
-    client.commands.set(comando.data.name, comando);
-}
-
-client.on('interactionCreate', (interaction) => {
-    console.log(interaction)
-})
+client.login("OTM1MjE0MTMwNzI4Njc3NDA3.Ye7YCA.XWHwxAvgX_rltIxerPD1jWodFu4");
 
 client.on("ready", () => {
     console.log("Il bot è online")
@@ -39,19 +25,10 @@ client.on("guildMemberAdd", (member) => {
     member.send({ embeds: [embed] });
     })
 
-client.on('messageCreate', async (message) => {
+client.on("messageCreate", (message) => {
 
-    if(!client.application?.owner) {
-        await client.application?.fetch();
-    }
-
-    if (message.content.toLowerCase() === '!registra' && message.author.id === client.application?.owner.id) {
-        const data = {
-            name: 'sera'
-        }
-        const comando = await client.guilds.ccache.gety(935811526806347776)?.commands.create(data);
-        console.log(comando);
+    if(message.content == "!pelo") {
+        
+        message.channel.send("cavoli patate")
     }
 })
-
-client.login(process.env.token)
