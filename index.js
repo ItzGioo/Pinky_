@@ -38,6 +38,7 @@ client.on("messageCreate", (message) => {
         message.channel.send("Non ho trovato questo utente")
         return  
     }
+    
 
     var embed1 = new Discord.MessageEmbed()
         .setTitle(utente.user.tag)
@@ -51,5 +52,5 @@ client.on("messageCreate", (message) => {
         .addField("Ruoli:", utente.roles.cache.map(ruolo => ruolo.name).join("\r"), false)
 
     message.channel.send(embed1)
-}
+    }
 })
