@@ -3,6 +3,8 @@ const client = new Discord.Client(
     {intents: ["GUILDS", "GUILD_MEMBERS", "GUILD_MESSAGES"]}
 )
 
+client.login(process.env.token);
+
 client.on("ready", () => {
     console.log("Il bot è online")
 })
@@ -24,11 +26,30 @@ client.on("guildMemberAdd", (member) => {
     })
 
 client.on("messageCreate", (message) => {
-
-    if(message.content == "!pelo") {
-        
-        message.channel.send("cavoli patate")
+    if(message.content.startWith("!info")){
+        if(message.content == "!info"){
+            messsage.channel.send("Devi specificare un utente")
+        }
+    else{
+        var utente = message.mentions.members.first();
     }
-})
 
-client.login(process.env.token);
+    if(!utente){
+        message.channel.send("Non ho trovato questo utente")
+        return  
+    }
+
+    var embed1 = new Discord.MessageEmbed()
+        .setTitle(utente.user.tag)
+        .setDescription("Informazioni su" + utente.user.tag)
+        .setThumbnail(utente.user.avatarURL())
+        .addField("Id di " + utente.user.tag, utente.user.id, true)
+        .addField(utente.user.tag + ("") + ("è:"), utente.user.presence.status, true)
+        .addField(utente.user.tag + ("") + ("è un:"), utente.user.bot ? "Bot" : "player", true)
+        .addField("Questo account è stato creato il:", utente.user.createdAt.toDateString(), true)
+        .addField(utente.user.tag + "è entrato nel server il:", utente.joineadAt.toDateString(), true)
+        .addField("Ruoli:", utente.roles.cache.map(ruolo => ruolo.name).join("\r"), false)
+
+    message.channel.send(embed1)
+}
+})
