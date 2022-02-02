@@ -25,3 +25,9 @@ client.on("guildMemberAdd", (member) => {
     member.send({ embeds: [embed] });
     })
 
+client.on("messageCreate", (message) => {
+    if(message.content == ("!sera")){
+        message.channel.send("gay")
+    }
+
+})
