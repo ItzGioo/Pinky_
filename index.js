@@ -3,7 +3,7 @@ const client = new Discord.Client(
     {intents: ["GUILDS", "GUILD_MEMBERS", "GUILD_MESSAGES"]}
 )
 
-client.login(process.env.token);
+client.login("OTM1MjE0MTMwNzI4Njc3NDA3.Ye7YCA.G_r3VZul4Z3jbJAxpZDcY63o5E4");
 
 client.on("ready", () => {
     console.log("Il bot è online")
@@ -26,6 +26,11 @@ client.on("guildMemberAdd", (member) => {
     })
 
 client.on("messageCreate", (message) => {
+
+    if(message.content.startWith("!sera")){
+        message.channel.send("Gay")
+    }    
+
     if(message.content.startWith("!info")){
         if(message.content == "!info"){
             messsage.channel.send("Devi specificare un utente")
