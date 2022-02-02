@@ -27,7 +27,7 @@ client.on("guildMemberAdd", (member) => {
 
 client.on("messageCreate", (message) => {
 
-    if(message.content.startWith("!sera")){
+    if(message.content == ("!sera")){
         message.channel.send("Gay")
     }    
 
