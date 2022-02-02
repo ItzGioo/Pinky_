@@ -25,37 +25,3 @@ client.on("guildMemberAdd", (member) => {
     member.send({ embeds: [embed] });
     })
 
-client.on("messageCreate", (message) => {
-
-    if(message.content == ("!sera")){
-        message.channel.send("Gay")
-    }    
-
-    if(message.content.startWith("!info")){
-        if(message.content == "!info"){
-            messsage.channel.send("Devi specificare un utente")
-        }
-    else{
-        var utente = message.mentions.members.first();
-    }
-
-    if(!utente){
-        message.channel.send("Non ho trovato questo utente")
-        return  
-    }
-    
-
-    var embed1 = new Discord.MessageEmbed()
-        .setTitle(utente.user.tag)
-        .setDescription("Informazioni su" + utente)
-        .setThumbnail(utente.user.avatarURL())
-        .addField("Id di " + utente.user.tag, utente.user.id, true)
-        .addField(utente + ("è:"), utente.user.presence.status, true)
-        .addField(utente + ("è un:"), utente.user.bot ? "Bot" : "player", true)
-        .addField("Questo account è stato creato il:", utente.user.createdAt.toDateString(), true)
-        .addField(utente.user.tag + "è entrato nel server il:", utente.joineadAt.toDateString(), true)
-        .addField("Ruoli:", utente.roles.cache.map(ruolo => ruolo.name).join("\r"), false)
-
-    message.channel.send(embed1)
-    }
-})
