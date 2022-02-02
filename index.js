@@ -31,30 +31,5 @@ client.on("messageCreate", (message) => {
         message.channel.send("gay")
     }
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    if(message.content.startWith("/info")){
-        if(message.content == ("/info")){
-            var utente = message.member;
-        }
-        else{
-            var utente = message.mentions.firts();
-        }
-        if(!utente){
-            message.send("Devi menzionare un utente")
-            return
-        }
-
-        var embed1 = new Discord.MessageEmbed()
-         .setTitle(utente.user.tag)
-         .setDescription("Informazioni su" + utente.user.tag)
-         .setThumbnail(utente.user.avatarURL())
-         .addField("Id di " + utente.user.tag, utente.user.id, true)
-         .addField(utente.user.tag + ("è:"), utente.user.presence.status, true)
-         .addField(utente.user.tag + ("è un:"), utente.user.bot ? "Bot" : "player", true)
-         .addField("Questo account è stato creato il:", utente.user.createdAt.toDateString(), true)
-         .addField(utente.user.tag + "è entrato nel server il:", utente.joineadAt.toDateString(), true)
-         .addField("Ruoli:", utente.roles.cache.map(ruolo => ruolo.name).join("\r"), false)
-
-        message.channel.send(embed1)
-    }
 
 })
