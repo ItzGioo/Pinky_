@@ -26,10 +26,22 @@ client.on("guildMemberAdd", (member) => {
     })
 
 client.on("messageCreate", (message) => {
-//----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
     if(message.content == ("/sera")){
         message.channel.send("gay")
     }
-//----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+    if(message.content == ("/PLaylist")){
+        var Canale = message.member.voice,channel;
+
+        if(!Canale){
+            message.channel.send("Devi entrare in un canale vocale");
+        }
+        else{
+            Canale.join()
+             .then(connection =>{
+                 connection.play("https://open.spotify.com/playlist/3PsfXP702sPlkZvoWsYEcd?si=9d5b6841660d41b5");
+                })
+        }
+    }
 })
